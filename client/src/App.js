@@ -1,31 +1,33 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-function App() {
-  const [count, setCount] = useState(0);
+import Navbar from "./components/navbar";
 
-  useEffect(() => {
-    fetch("/hello")
-      .then((r) => r.json())
-      .then((data) => setCount(data.count));
-  }, []);
+function App() {
+
 
   return (
     <Router>
       <div className="App">
 
+        <Navbar/> 
+
         <Routes>
 
         <Route exact path='/' element={
-            <h2>hey dad look i'm not just using the new machine for tv</h2>
+            <h2>i'm like so cool look how cool i amv</h2>
           }/>
 
-          <Route exact path='/something' element={
-            <h2>I'm doing something</h2>
+          <Route exact path='/academics' element={
+            <h2>yeah i wwent to sschoolg</h2>
           }/>
 
-          <Route exact path="/pagecount" element={
-            <h1>Page Count: {count}</h1>
+          <Route exact path="/perspursproj" element={
+            <h1>i pretnded to fix a mustang and paid to fly</h1>
+          }/>
+
+          <Route exact path="/passions" element={
+            <h1>i run cause i'm insecure and hate myself</h1>
           }/>
 
         </Routes>
