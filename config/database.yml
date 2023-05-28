@@ -79,8 +79,12 @@ test:
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
+# production:
+#   <<: *default
+#   database: my_page_project_production
+#   username: my_page_project
+#   password: <%= ENV["MY_PAGE_PROJECT_DATABASE_PASSWORD"] %>
+
 production:
   <<: *default
-  database: my_page_project_production
-  username: my_page_project
-  password: <%= ENV["MY_PAGE_PROJECT_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
