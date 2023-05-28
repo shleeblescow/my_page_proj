@@ -16,6 +16,10 @@ function App() {
 
         <Routes>
 
+        <Route exact path='/' element={
+            <h2>hey dad look i'm not just using the new machine for tv</h2>
+          }/>
+
           <Route exact path='/something' element={
             <h2>I'm doing something</h2>
           }/>
