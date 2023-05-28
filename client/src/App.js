@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -10,10 +11,23 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <h1>Page Count: {count}</h1>
-      <h2>I'm doing something</h2>
-    </div>
+    <Router>
+      <div className="App">
+
+        <Routes>
+
+          <Route exact path='/something' element={
+            <h2>I'm doing something</h2>
+          }/>
+
+          <Route exact path="/pagecount" element={
+            <h1>Page Count: {count}</h1>
+          }/>
+
+        </Routes>
+      
+      </div>
+    </Router>
   );
 }
 
