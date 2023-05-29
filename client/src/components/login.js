@@ -28,10 +28,12 @@ function Login({onSetAdmin, onSetShowLogin}) {
         .then(res => {
             if(res.ok){
                 res.json().then(() => {
+                    console.log('youre in')
                     onSetAdmin()
                     onSetShowLogin()
                 })
             }else {
+                console.log(res)
                 console.log('you failed')
             }
         })
