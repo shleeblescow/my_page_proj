@@ -2,8 +2,31 @@ import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Navbar from "./components/navbar";
+import Login from "./components/login";
 
 function App() {
+
+  const [isAdmin, setIsAdmin] = useState(false)
+  const [showLogIn, setShowLogIn] = useState(false)
+
+  useEffect(() => {
+    fetch("/authorized_user")
+    .then((res) => {
+      if (res.ok) {
+        res.json()
+        .then((admin) => {
+          console.log('access granted')
+          console.log(admin)
+          updateAdmin();
+        });
+      } else {
+        console.log('not authorized')
+      }
+    })
+  },[])
+
+  const updateAdmin = () => setIsAdmin(true)
+  const adminLogInButton = () => setShowLogIn(true)
 
 
   return (
@@ -11,6 +34,7 @@ function App() {
       <div className="App">
 
         <Navbar/> 
+
 
         <Routes>
 
@@ -31,6 +55,21 @@ function App() {
           }/>
 
         </Routes>
+
+        {showLogIn ? 
+
+            <Login
+              onSetAdmin={() => setIsAdmin(true)}
+              onSetShowLogin={() => setShowLogIn(false)}
+            />
+
+          :
+
+              <button onClick={adminLogInButton}>
+                  Admin Login
+              </button>
+
+        }
       
       </div>
     </Router>

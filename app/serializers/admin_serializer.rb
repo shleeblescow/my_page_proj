@@ -1,3 +1,4 @@
 class AdminSerializer < ActiveModel::Serializer
-  attributes :id, :username, :linkdin, :insta, :email, :githublink, :password_digest, :bio, :location, :careergoals
+  include Rails.application.routes.url_helpers
+  attributes :username, :linkdin, :insta, :email, :githublink, :bio, :location, :careergoals
 end
