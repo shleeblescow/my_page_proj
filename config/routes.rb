@@ -1,15 +1,17 @@
 Rails.application.routes.draw do
-  resources :posts
-  resources :admins
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
   # root "articles#index"
 
+  resources :admins
+
   get '/hello', to: 'application#hello_world'
 
   post '/login', to: 'sessions#create'
   delete '/logout', to:'sessions#delete' 
+  get '/authorized_user', to: 'users#show'
+  
 
   get '*path',
     to: 'fallback#index',
