@@ -13,7 +13,7 @@
 
 me = Admin.create(
     username: "shleebles",
-    password: "toyprinter",
+    password_digest: "toyprinter",
     linkdin: "https://www.linkedin.com/in/shelby-lee-slee",
     insta: "@shleeblesgreencow",
     email: "shleeblesgreencow@gmail.comn",

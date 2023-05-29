@@ -25,7 +25,7 @@ class AdminsController < ApplicationController
     private
 
     def user_params
-        params.permit(:username, :password, :linkdin, :insta, :email, :bio, :githublink, :location, :careergoals)
+        params.permit(:username, :password_digest, :linkdin, :insta, :email, :bio, :githublink, :location, :careergoals)
     end
 
 
