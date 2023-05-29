@@ -16,6 +16,12 @@ class AdminsController < ApplicationController
         render json: Admin.all
     end
 
+    def create
+        user = Admin.create!(user_params)
+        session[:user_id] = user.id
+        render json: user, status: :created
+    end
+
     private
 
     def user_params
