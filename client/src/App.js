@@ -3,14 +3,23 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Navbar from "./components/navbar";
 import Login from "./components/login";
+import HomePage from "./components/homepage";
 
 function App() {
 
   const [isAdmin, setIsAdmin] = useState(false)
   const [showAdminLoginButton, setShowAdminLoginButton] = useState(true)
+  const [myDeets, setMyDeets] = useState([])
+  const [myPosts, setMyPosts] = useState([])
 
 
   useEffect(() => {
+    authUser()
+    fetchMyDeets()
+    // fetchMyPosts()
+  },[])
+
+  const authUser = () => {
     fetch("/authorized_user")
     .then((res) => {
       if (res.ok) {
@@ -24,7 +33,33 @@ function App() {
         console.log('not authorized')
       }
     })
-  },[])
+  }
+
+  const fetchMyDeets = () => {
+    fetch('/admins')
+    .then(res => {
+      if(res.ok){
+        res.json().then((deets) => { 
+          setMyDeets(deets)
+      })
+      }else {
+        console.log('welp via deets')
+      }
+    })
+  }
+
+  // const fetchMyPosts = () => {
+  //   fetch('/posts')
+  //   .then(res => {
+  //     if(res.ok){
+  //       res.json().then((posts) => { 
+  //         setMyDeets(posts)
+  //     })
+  //     }else {
+  //       console.log('welp via posts')
+  //     }
+  //   })
+  // }
 
   const updateAdmin = () => setIsAdmin(!isAdmin)
   const adminLogInButton = () => setShowAdminLoginButton(!showAdminLoginButton)
@@ -41,8 +76,11 @@ function App() {
 
         <Routes>
 
-        <Route exact path='/' element={
-            <h2>i'm like so cool look how cool i amv</h2>
+          <Route exact path='/' element={
+            <HomePage
+              myDeets={myDeets}
+              fetchMyDeets={fetchMyDeets}
+            />
           }/>
 
           <Route exact path='/academics' element={
