@@ -2,7 +2,9 @@ import React, {useState} from 'react'
 
 // CSS Stuff: make the input boxes NOT span, maybe smaller text in h2 and bigger input labels
 
-function Login({onSetAdmin, onSetShowLogin}) {
+function Login({onSetAdmin, onShowAB}) {
+
+    const [showLogIn, setShowLogIn] = useState(true)
     
     const [formData, setFormData] = useState({
         username:'',
@@ -30,7 +32,8 @@ function Login({onSetAdmin, onSetShowLogin}) {
                 res.json().then(() => {
                     console.log('youre in')
                     onSetAdmin()
-                    onSetShowLogin()
+                    setShowLogIn(() => setShowLogIn(false))
+                    console.log(showLogIn)
                 })
             }else {
                 console.log(res)
@@ -45,29 +48,55 @@ function Login({onSetAdmin, onSetShowLogin}) {
         setFormData({ ...formData, [name]: value })
     }
 
+    function logoutFun(){
+        fetch('/logout', {
+            method: 'DELETE',
+        })
+        onSetAdmin()
+        onShowAB()
+        setShowLogIn(() => true)
+        console.log('seeee youz')
+    }
+
 
     return (
-        <div className='p-4'> 
-            <form onSubmit={onSubmit} className="mb-5">
-            <label>
-                username:
-            </label>
-            <input type='text' name='username' value={username} onChange={handleChange} />
-        
-            <br/>
 
-            <label>
-                password:
-            </label>
-            <input type='password' name='password' value={password} onChange={handleChange}  />
+        <>
 
-            <br/>         
+        {showLogIn ?
+            <div className='p-4'> 
+                <form onSubmit={onSubmit} className="mb-5">
+                <label>
+                    username:
+                </label>
+                <input type='text' name='username' value={username} onChange={handleChange} />
+            
+                <br/>
 
-            <button>
-                <input type='submit' value='sup dawg' />
+                <label>
+                    password:
+                </label>
+                <input type='password' name='password' value={password} onChange={handleChange}  />
+
+                <br/>         
+
+                <button>
+                    <input type='submit' value='sup dawg' />
+                </button>
+            </form>
+            </div>
+
+        :
+        <div>
+            <h1>sup Shelby</h1>
+            <button onClick={logoutFun}>
+                get outta here
             </button>
-        </form>
-        </div>
+      </div>
+
+        }
+
+        </>
     )
 }
 

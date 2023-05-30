@@ -7,7 +7,8 @@ import Login from "./components/login";
 function App() {
 
   const [isAdmin, setIsAdmin] = useState(false)
-  const [showLogIn, setShowLogIn] = useState(false)
+  const [showAdminLoginButton, setShowAdminLoginButton] = useState(true)
+
 
   useEffect(() => {
     fetch("/authorized_user")
@@ -25,8 +26,10 @@ function App() {
     })
   },[])
 
-  const updateAdmin = () => setIsAdmin(true)
-  const adminLogInButton = () => setShowLogIn(true)
+  const updateAdmin = () => setIsAdmin(!isAdmin)
+  const adminLogInButton = () => setShowAdminLoginButton(!showAdminLoginButton)
+
+
 
 
   return (
@@ -56,18 +59,18 @@ function App() {
 
         </Routes>
 
-        {showLogIn ? 
+        {showAdminLoginButton ? 
+
+            <button onClick={adminLogInButton}>
+              Admin Login
+            </button>
+            
+            :
 
             <Login
               onSetAdmin={() => setIsAdmin(true)}
-              onSetShowLogin={() => setShowLogIn(false)}
+              onShowAB={() => setShowAdminLoginButton(true)}
             />
-
-          :
-
-              <button onClick={adminLogInButton}>
-                  Admin Login
-              </button>
 
         }
       
