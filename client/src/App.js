@@ -40,7 +40,8 @@ function App() {
     .then(res => {
       if(res.ok){
         res.json().then((deets) => { 
-          setMyDeets(deets)
+          // console.log(deets[0])
+          setMyDeets(deets[0])
       })
       }else {
         console.log('welp via deets')
