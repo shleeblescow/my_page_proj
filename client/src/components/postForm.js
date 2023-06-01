@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export default function PostForm({}) {
+export default function PostForm({onClickDrama}) {
 
     const [formData, setFormData] = useState({
         title: '',
@@ -29,7 +29,7 @@ export default function PostForm({}) {
             formDataSubmit.append("body", formData.body)
             formDataSubmit.append("category", formData.category)
 
-        // onClickDrama(postStuff, formDataSubmit)
+        onClickDrama(postStuff, formDataSubmit)
     }
 
     return (

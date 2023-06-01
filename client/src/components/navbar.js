@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-export default function Navbar() {
+export default function Navbar({isAdmin}) {
 
 
     const navigate = useNavigate()
@@ -19,6 +19,10 @@ export default function Navbar() {
 
     function navDramaPassions(){
         navigate('/passions')
+    }
+
+    function navDramaPost(){
+        navigate('/post')
     }
 
 
@@ -41,6 +45,19 @@ return (
         <button onClick={navDramaPassions}>
             Passions
         </button>
+
+        {isAdmin ?
+
+            <button onClick={navDramaPost}>
+                Post
+            </button>
+        
+        :
+
+            <></>
+    
+        }
+        
 
 
 

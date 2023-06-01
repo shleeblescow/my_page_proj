@@ -4,14 +4,6 @@ import React, {useState, useEffect} from 'react'
 
 function Login({onSetAdmin, onShowAB, showLogIn, setShowLogIn}) {
 
-    // const [showLogIn, setShowLogIn] = useState(true)
-
-    // useEffect(() =>{
-    //     setShowLogIn(() => setShowLogIn(true))
-    // },[])
-    
-    console.log(showLogIn)
-
     const [formData, setFormData] = useState({
         username:'',
         password:''

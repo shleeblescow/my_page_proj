@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from "./components/navbar";
 import Login from "./components/login";
 import HomePage from "./components/homepage";
-import PostForm from "./components/postForm";
+import MakeAPost from "./components/makeAPost";
 
 function App() {
 
@@ -18,12 +18,6 @@ function App() {
   useEffect(() => {
     authUser()
     fetchMyDeets()
-    // if (isAdmin == true) {
-    //   setShowLogIn(false)
-    // } else {
-    //   setShowLogIn(true)
-    // }
-    // fetchMyPosts()
   },[])
 
   const authUser = () => {
@@ -111,7 +105,7 @@ function App() {
           }/>
 
           <Route exact path="/post" element={
-            <PostForm/>
+            <MakeAPost/>
           }/>
 
         </Routes>
