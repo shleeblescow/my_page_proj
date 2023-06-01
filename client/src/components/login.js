@@ -1,11 +1,17 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
 // CSS Stuff: make the input boxes NOT span, maybe smaller text in h2 and bigger input labels
 
-function Login({onSetAdmin, onShowAB}) {
+function Login({onSetAdmin, onShowAB, showLogIn, setShowLogIn}) {
 
-    const [showLogIn, setShowLogIn] = useState(true)
+    // const [showLogIn, setShowLogIn] = useState(true)
+
+    // useEffect(() =>{
+    //     setShowLogIn(() => setShowLogIn(true))
+    // },[])
     
+    console.log(showLogIn)
+
     const [formData, setFormData] = useState({
         username:'',
         password:''
@@ -54,7 +60,7 @@ function Login({onSetAdmin, onShowAB}) {
         })
         onSetAdmin()
         onShowAB()
-        setShowLogIn(() => true)
+        setShowLogIn(() => setShowLogIn(true))
         console.log('seeee youz')
     }
 

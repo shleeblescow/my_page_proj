@@ -4,18 +4,25 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from "./components/navbar";
 import Login from "./components/login";
 import HomePage from "./components/homepage";
+import PostForm from "./components/postForm";
 
 function App() {
 
-  const [isAdmin, setIsAdmin] = useState(false)
-  const [showAdminLoginButton, setShowAdminLoginButton] = useState(true)
+  const [isAdmin, setIsAdmin] = useState()
+  const [showAdminLoginButton, setShowAdminLoginButton] = useState()
   const [myDeets, setMyDeets] = useState([])
-  const [myPosts, setMyPosts] = useState([])
+  // const [myPosts, setMyPosts] = useState([])
+  const [showLogIn, setShowLogIn] = useState()
 
 
   useEffect(() => {
     authUser()
     fetchMyDeets()
+    // if (isAdmin == true) {
+    //   setShowLogIn(false)
+    // } else {
+    //   setShowLogIn(true)
+    // }
     // fetchMyPosts()
   },[])
 
@@ -27,10 +34,14 @@ function App() {
         .then((admin) => {
           console.log('access granted')
           console.log(admin)
-          updateAdmin();
+          updateAdmin(true);
+          setShowLogIn(() => setShowLogIn(false))
+          adminLogInButtonToFalse()
         });
       } else {
         console.log('not authorized')
+        adminLogInButtonToTrue()
+        setShowLogIn(() => setShowLogIn(true))
       }
     })
   }
@@ -62,8 +73,9 @@ function App() {
   //   })
   // }
 
-  const updateAdmin = () => setIsAdmin(!isAdmin)
-  const adminLogInButton = () => setShowAdminLoginButton(!showAdminLoginButton)
+  const updateAdmin = (toWhat) => setIsAdmin(toWhat)
+  const adminLogInButtonToFalse = () => setShowAdminLoginButton(false)
+  const adminLogInButtonToTrue = () => setShowAdminLoginButton(true)
 
 
 
@@ -72,7 +84,9 @@ function App() {
     <Router>
       <div className="App">
 
-        <Navbar/> 
+        <Navbar
+          isAdmin={isAdmin}
+        /> 
 
 
         <Routes>
@@ -85,22 +99,26 @@ function App() {
           }/>
 
           <Route exact path='/academics' element={
-            <h2>yeah i wwent to sschoolg</h2>
+            <h2>sschool</h2>
           }/>
 
           <Route exact path="/perspursproj" element={
-            <h1>i pretnded to fix a mustang and paid to fly</h1>
+            <h1>machines</h1>
           }/>
 
           <Route exact path="/passions" element={
-            <h1>i run cause i'm insecure and hate myself</h1>
+            <h1>running</h1>
+          }/>
+
+          <Route exact path="/post" element={
+            <PostForm/>
           }/>
 
         </Routes>
 
         {showAdminLoginButton ? 
 
-            <button onClick={adminLogInButton}>
+            <button onClick={adminLogInButtonToFalse}>
               Admin Login
             </button>
             
@@ -109,6 +127,8 @@ function App() {
             <Login
               onSetAdmin={() => setIsAdmin(true)}
               onShowAB={() => setShowAdminLoginButton(true)}
+              showLogIn={showLogIn}
+              setShowLogIn={setShowLogIn}
             />
 
         }
