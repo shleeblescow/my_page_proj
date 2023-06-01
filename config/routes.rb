@@ -12,7 +12,10 @@ Rails.application.routes.draw do
 
   post '/login', to: 'sessions#create'
   delete '/logout', to:'sessions#delete' 
+
   get '/authorized_user', to: 'admins#show'
+
+  get '/academic_posts', to: 'posts#fetchAcademics'
   
 
   # get '*path',

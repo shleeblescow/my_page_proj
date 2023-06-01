@@ -26,10 +26,16 @@ class PostsController < ApplicationController
         head :no_content
     end
 
+    def fetchAcademics
+        acaPost = Post.where(category: 'academics')
+        render json: acaPost
+    end
+
+
     private
 
     def post_params
-        params.permit(:titile, :body, :category)
+        params.permit(:title, :body, :category)
     end
 
 

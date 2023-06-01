@@ -5,18 +5,20 @@ import Navbar from "./components/navbar";
 import Login from "./components/login";
 import HomePage from "./components/homepage";
 import MakeAPost from "./components/makeAPost";
+import Academics from "./components/academics";
 
 function App() {
 
   const [isAdmin, setIsAdmin] = useState()
   const [showAdminLoginButton, setShowAdminLoginButton] = useState()
   const [myDeets, setMyDeets] = useState([])
-  // const [myPosts, setMyPosts] = useState([])
+  const [myPosts, setMyPosts] = useState([])
   const [showLogIn, setShowLogIn] = useState()
 
 
   useEffect(() => {
     authUser()
+    fetchMyDeets()
     fetchMyDeets()
   },[])
 
@@ -45,7 +47,6 @@ function App() {
     .then(res => {
       if(res.ok){
         res.json().then((deets) => { 
-          // console.log(deets[0])
           setMyDeets(deets[0])
       })
       }else {
@@ -54,18 +55,19 @@ function App() {
     })
   }
 
-  // const fetchMyPosts = () => {
-  //   fetch('/posts')
-  //   .then(res => {
-  //     if(res.ok){
-  //       res.json().then((posts) => { 
-  //         setMyDeets(posts)
-  //     })
-  //     }else {
-  //       console.log('welp via posts')
-  //     }
-  //   })
-  // }
+  const fetchMyPosts = () => {
+    fetch('/posts')
+    .then(res => {
+      if(res.ok){
+        res.json().then((posts) => { 
+          setMyDeets(posts)
+          console.log('we got some posts all fetched here')
+      })
+      }else {
+        console.log('welp via posts')
+      }
+    })
+  }
 
   const updateAdmin = (toWhat) => setIsAdmin(toWhat)
   const adminLogInButtonToFalse = () => setShowAdminLoginButton(false)
@@ -93,7 +95,8 @@ function App() {
           }/>
 
           <Route exact path='/academics' element={
-            <h2>sschool</h2>
+            // <h2>sschool</h2>
+            <Academics/>
           }/>
 
           <Route exact path="/perspursproj" element={
