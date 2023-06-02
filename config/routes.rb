@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   get '/authorized_user', to: 'admins#show'
 
   get '/academic_posts', to: 'posts#fetchAcademics'
+  get '/projects_posts', to: 'posts#fetchProjects'
+  get '/passions_posts', to: 'posts#fetchPassions'
   
 
   # get '*path',

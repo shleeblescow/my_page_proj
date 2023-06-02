@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-export default function Navbar({isAdmin}) {
+export default function Navbar({isAdmin, showLogIn}) {
 
 
     const navigate = useNavigate()
@@ -46,7 +46,7 @@ return (
             Passions
         </button>
 
-        {isAdmin ?
+        {!showLogIn ?
 
             <button onClick={navDramaPost}>
                 Post

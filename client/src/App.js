@@ -81,7 +81,8 @@ function App() {
       <div className="App">
 
         <Navbar
-          isAdmin={isAdmin}
+          // used to show post button or not
+          showLogIn={showLogIn}
         /> 
 
 

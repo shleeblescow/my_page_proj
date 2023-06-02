@@ -31,6 +31,16 @@ class PostsController < ApplicationController
         render json: acaPost
     end
 
+    def fetchProjects
+        projPost = Post.where(category: 'projects')
+        render json: projPost
+    end
+
+    def fetchPassions
+        passPost = Post.where(category: 'passions')
+        render json: passPost
+    end
+
 
     private
 
