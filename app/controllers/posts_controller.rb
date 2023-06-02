@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
 
+    skip_before_action :authorized_admin, only: [:show, :index, :fetchAcademics, :fetchPassions, :fetchProjects]
+
     def index
         render json: Post.all
     end

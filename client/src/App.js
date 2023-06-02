@@ -5,7 +5,7 @@ import Navbar from "./components/navbar";
 import Login from "./components/login";
 import HomePage from "./components/homepage";
 import MakeAPost from "./components/makeAPost";
-import Academics from "./components/academics";
+import CatPages from "./components/catPages";
 
 function App() {
 
@@ -55,17 +55,17 @@ function App() {
     })
   }
 
-  const fetchMyPosts = () => {
-    fetch('/posts')
-    .then(res => {
-      if(res.ok){
-        res.json().then((posts) => { 
-          setMyDeets(posts)
-          console.log('we got some posts all fetched here')
-      })
-      }else {
-        console.log('welp via posts')
-      }
+  const fetchMyPosts = (cat) => {
+    fetch(`/${cat}_posts`)
+    .then((res) => {
+        if(res.ok) {
+            res.json()
+            .then((posts) => {
+                setMyPosts(posts)
+            }
+        )} else {
+            console.log('noooope')
+        }
     })
   }
 
@@ -96,16 +96,27 @@ function App() {
           }/>
 
           <Route exact path='/academics' element={
-            // <h2>sschool</h2>
-            <Academics/>
+            <CatPages
+              fetchMyPosts={() => fetchMyPosts('academics')}
+              myPosts={myPosts}
+              cat={'Academics'}
+            />
           }/>
 
           <Route exact path="/perspursproj" element={
-            <h1>machines</h1>
+            <CatPages
+              fetchMyPosts={() => fetchMyPosts('projects')}
+              myPosts={myPosts}
+              cat={'Personal Projects and Pursuits'}
+            />
           }/>
 
           <Route exact path="/passions" element={
-            <h1>running</h1>
+            <CatPages
+              fetchMyPosts={() => fetchMyPosts('passions')}
+              myPosts={myPosts}
+              cat={'Passions'}
+            />
           }/>
 
           <Route exact path="/post" element={
