@@ -3,11 +3,10 @@ import {v4 as uuid} from "uuid";
 
 import RenderPostCard from "./renderPostCard";
 
-export default function CatPages({cat, myPosts, fetchMyPosts}) {
+export default function CatPages({cat, myPosts, fetchMyPosts, isAdmin}) {
 
     useEffect(() => {
         fetchMyPosts()
-        // console.log(myPosts)
     })
 
 
@@ -18,6 +17,7 @@ export default function CatPages({cat, myPosts, fetchMyPosts}) {
                 <div key={uuid()} >
                     <RenderPostCard
                         thisPost={eachPost}
+                        isAdmin={isAdmin}
                         // onButtonDrama={() => navigate(`/browsetrips/${eachTrip.id}`)}
                     />
                     <br/>

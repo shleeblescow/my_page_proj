@@ -100,6 +100,7 @@ function App() {
               fetchMyPosts={() => fetchMyPosts('academics')}
               myPosts={myPosts}
               cat={'Academics'}
+              isAdmin={!showLogIn}
             />
           }/>
 
@@ -108,6 +109,7 @@ function App() {
               fetchMyPosts={() => fetchMyPosts('projects')}
               myPosts={myPosts}
               cat={'Personal Projects and Pursuits'}
+              isAdmin={!showLogIn}
             />
           }/>
 
@@ -116,6 +118,7 @@ function App() {
               fetchMyPosts={() => fetchMyPosts('passions')}
               myPosts={myPosts}
               cat={'Passions'}
+              isAdmin={!showLogIn}
             />
           }/>
 
