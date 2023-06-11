@@ -2,6 +2,10 @@ import { useState, useEffect } from "react";
 
 export default function PostForm({onClickDrama}) {
 
+    // need to add some conditional rendering for it a post or an edit
+    // either render with exisiting info or empty text boxes
+    // the button text changes
+
     const [formData, setFormData] = useState({
         title: '',
         body: '',
