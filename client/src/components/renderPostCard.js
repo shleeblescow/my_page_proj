@@ -56,7 +56,8 @@ export default function RenderPostCard({ thisPost, isAdmin }) {
                     <button onClick={deletePostDrama}>
                         what a stupid post - delete it
                     </button>
-                    <button onClick={editPostDrama}>
+                    <button>
+                    {/* <button onClick={editPostDrama}> */}
                         what a stupid post - edit it
                     </button>
                 </div>
